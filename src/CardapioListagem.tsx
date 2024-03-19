@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
     },
     textNome:{
         color:'black',
-        marginLeft:90,
+        marginLeft:80,
     
         
     },
