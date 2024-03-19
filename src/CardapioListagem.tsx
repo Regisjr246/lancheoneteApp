@@ -27,6 +27,9 @@ const dados: MenuItem[] = [
     { id: "10", nome: "X-BURGUER", ingredientes: "Pão de Brioche, 2 hamburguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/hamburguer.png') },
     { id: "11", nome: "X-BURGUER", ingredientes: "Pão de Brioche, 2 hamburguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/hamburguer.png') },
     { id: "12", nome: "X-BURGUER", ingredientes: "Pão de Brioche, 2 hamburguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/hamburguer.png') },
+    { id: "13", nome: "X-BURGUER", ingredientes: "Pão de Brioche, 2 hamburguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/hamburguer.png') },
+    { id: "14", nome: "X-BURGUER", ingredientes: "Pão de Brioche, 2 hamburguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/hamburguer.png') },
+    { id: "15", nome: "X-BURGUER", ingredientes: "Pão de Brioche, 2 hamburguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/hamburguer.png') },
 ];
 
 
@@ -54,7 +57,7 @@ function CardapioListagem(): React.JSX.Element {
             </View>
 
             <View>
-                <Text style={styles.especialides}>Especialidades</Text>
+                <Text style={styles.especialides}>Hamburgues</Text>
 
 
             </View>
@@ -117,7 +120,6 @@ const styles = StyleSheet.create({
        
     },
     footerIcon: {
-
         width: 40,
         height: 40
     },
@@ -136,7 +138,7 @@ const styles = StyleSheet.create({
         alignItems: "flex-end",
         fontSize: 20,
         color: 'black',
-        fontFamily: '"Gill Sans"'
+        fontFamily: 'serif'
 
 
     },
@@ -145,6 +147,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         marginVertical: 8,
         marginHorizontal: 16,
+        
+        marginBottom:20
         
     },
     imageCardapio:{
@@ -158,11 +162,6 @@ const styles = StyleSheet.create({
     textNome:{
         color:'black',
         marginLeft:90,
-        
-        
-        
-
-   
     
         
     },
