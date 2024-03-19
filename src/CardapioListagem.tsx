@@ -32,10 +32,11 @@ const dados: MenuItem[] = [
 
 const renderItem = ({ item }: { item: MenuItem }) => (
     <TouchableOpacity style={styles.item}>
-        <Text style={styles.textCardapio}>{item.nome}  </Text>
-        <Text style={styles.textCardapio}>{item.ingredientes} </Text>
-        <Text style={styles.textCardapio}>{item.valor} </Text>
-        <Image source={item.image} style={styles.imageCardapio}>{}</Image>
+       
+        <Text style={styles.textNome}>{item.nome}  </Text>
+        <Text style={styles.textIngredientes}>{item.ingredientes} </Text>
+        <Text style={styles.textValor}>{item.valor} </Text>
+        <Image source={item.image} style={styles.imageCardapio} />
     </TouchableOpacity>
 )
 
@@ -65,29 +66,12 @@ function CardapioListagem(): React.JSX.Element {
                 keyExtractor={(item) => item.id} />
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             <View style={styles.footer}>
+
+
+            <TouchableOpacity>
+                    <Image source={require('./assets/images/home.png')} style={styles.footerIcon} />
+                </TouchableOpacity>
 
                 <TouchableOpacity>
                     <Image source={require('./assets/images/menu.png')} style={styles.footerIcon} />
@@ -103,6 +87,7 @@ function CardapioListagem(): React.JSX.Element {
                 <TouchableOpacity>
                     <Image source={require('./assets/images/config.png')} style={styles.footerIcon} />
                 </TouchableOpacity>
+
             </View>
 
 
@@ -164,10 +149,41 @@ const styles = StyleSheet.create({
     },
     imageCardapio:{
         width:100,
-        height:100
+        height:100,
+        marginLeft:-30,
+        marginVertical:-50,
+        marginTop:-90
+        
     },
-    textCardapio:{
-        color:'black'
+    textNome:{
+        color:'black',
+        marginLeft:90,
+        
+        
+        
+
+   
+    
+        
+    },
+    
+    textIngredientes:{
+        color:'black',
+        marginLeft:80,
+        width:200,
+        justifyContent:"center",
+        flexDirection:'row',
+ 
+        
+        
+        
+    },
+    
+    textValor:{
+        color:'black',
+        marginLeft:80,
+        
+        
     }
 });
 
