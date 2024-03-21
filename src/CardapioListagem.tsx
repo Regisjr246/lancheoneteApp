@@ -28,6 +28,10 @@ const dados: MenuItem[] = [
     { id: "13", nome: "BURGUER STAR 13", ingredientes: "Pão de Brioche, 2 hambúrguer de 150g,queijo chedar, ", valor: "R$29,90", image: require('./assets/images/h12.png'), Image: require('./assets/images/h+.png') },
     { id: "14", nome: "BURGUER STAR 14", ingredientes: "Pão de Brioche, 2 hambúrguer de 150g,queijo chedar, ", valor: "R$35,90", image: require('./assets/images/h13.png') , Image: require('./assets/images/h+.png')},
     { id: "15", nome: "BURGUER STAR 15", ingredientes: "Pão de Brioche, 2 hambúrguer de 150g,queijo chedar, ", valor: "R$37,90", image: require('./assets/images/h14.png') , Image: require('./assets/images/h+.png')},
+    { id: "16", nome: "Coca Cola Lata", ingredientes:" 350ml, ", valor: "R$37,90", image: require('./assets/images/cocaLata.png') , Image: require('./assets/images/h+.png')},   
+   
+
+
 ];
 
 
@@ -42,6 +46,7 @@ const renderItem = ({ item }: { item: MenuItem }) => (
         </TouchableOpacity>
     
     </TouchableOpacity>
+    
 );
 
 
