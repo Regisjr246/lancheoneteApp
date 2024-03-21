@@ -1,12 +1,22 @@
 import React from 'react';
 
 import CardapioListagem from './src/CardapioListagem';
-//import Example from './src/teste';
+import Carrinho from './src/Carrinho';
+
+
+
+
+
+
+
+
+
+
 function App(): React.JSX.Element {
   return (
-  <CardapioListagem/>
-   
- //<Example/>
+  //<CardapioListagem/>
+   <Carrinho/>
+ 
  
  );
 }
