@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Image, Text, StyleSheet, TouchableOpacity, View, FlatList } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import Footer from './Footer.tsx';
-
-
-
+import { RadioButton } from 'react-native-paper';
 
 
 
@@ -18,9 +16,9 @@ interface MenuItem {
 }
 
 const dados: MenuItem[] = [
-    { id: "1", nome: "BURGUER STAR 1", ingredientes: "Pão de Brioche, 2 hambúrguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/h0.png'), Image: require('./assets/images/h+.png') },
-    { id: "2", nome: "BURGUER STAR 2", ingredientes: "Pão de Brioche, 2 hambúrguer de 150g,queijo chedar, ", valor: "R$22,90", image: require('./assets/images/h1.png'), Image: require('./assets/images/h+.png') },
-    { id: "3", nome: "BURGUER STAR 3", ingredientes: "Pão de Brioche, 2 hambúrguer de 150g,queijo chedar, ", valor: "R$25,90", image: require('./assets/images/h2.png'), Image: require('./assets/images/h+.png') },
+    { id: "1", nome: "BURGUER STAR 1", ingredientes: "Pão de Brioche, 2 hambúrguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/h0.png'), Image: require('./assets/images/lixeira.png') },
+    { id: "2", nome: "BURGUER STAR 2", ingredientes: "Pão de Brioche, 2 hambúrguer de 150g,queijo chedar, ", valor: "R$22,90", image: require('./assets/images/h1.png'), Image: require('./assets/images/lixeira.png') },
+    { id: "3", nome: "BURGUER STAR 3", ingredientes: "Pão de Brioche, 2 hambúrguer de 150g,queijo chedar, ", valor: "R$25,90", image: require('./assets/images/h2.png'), Image: require('./assets/images/lixeira.png') },
 ];
 
 
@@ -41,7 +39,10 @@ const renderItem = ({ item }: { item: MenuItem }) => (
 
 
 function Carrinho(): React.JSX.Element {
+    const [value, setValue] = React.useState(0);
+    const scrollRef = useRef();
 
+    const [checked, setChecked] = React.useState('first');
     return (
 
         <View>
@@ -61,16 +62,47 @@ function Carrinho(): React.JSX.Element {
                 keyExtractor={(item) => item.id} />
 
 
-
-
-
-
 <View>
+     
+      
+    </View>
 
 
 
-    
-</View>
+
+
+
+
+
+
+
+    <View>
+      <RadioButton
+        value="first"
+        status={ checked === 'first' ? 'checked' : 'unchecked' }
+        onPress={() => setChecked('first')} >
+            </RadioButton>
+      <RadioButton
+        value="second"
+        status={ checked === 'second' ? 'checked' : 'unchecked' }
+        onPress={() => setChecked('second')}
+      />
+
+<RadioButton
+        value="second"
+        status={ checked === 'third' ? 'checked' : 'unchecked' }
+        onPress={() => setChecked('third')}
+      />
+
+
+
+<RadioButton
+        value="second"
+        status={ checked === 'fourth' ? 'checked' : 'unchecked' }
+        onPress={() => setChecked('fourth')}
+       />
+
+    </View>
 
 
 
@@ -155,7 +187,11 @@ const styles = StyleSheet.create({
         marginVertical: -15,
 
     },
-
+    Cc:{
+        fontSize:20,
+   
+    },
+   
 
 
 });
