@@ -50,7 +50,7 @@ function Carrinho(): React.JSX.Element {
                 <TouchableOpacity>
                     <Image source={require('./assets/images/marca.png')} style={styles.hIcon} />
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonCarrinho}><Text style={styles.textPedido} >ENVIAR PEDIDO</Text></TouchableOpacity>
+                <TouchableOpacity style={styles.buttonCarrinho}><Text style={styles.textPedido} >Enviar Pedido</Text></TouchableOpacity>
             </View>
 
 
@@ -74,14 +74,15 @@ function Carrinho(): React.JSX.Element {
 
 
 
+<Text style={styles.formaPagementos}>Forma de Pagamento:</Text>
 
+    <View style={styles.Rd1}>
 
-    <View>
       <RadioButton
-        value="first"
+         value="Teste"
         status={ checked === 'first' ? 'checked' : 'unchecked' }
         onPress={() => setChecked('first')} >
-            </RadioButton>
+            </RadioButton> 
       <RadioButton
         value="second"
         status={ checked === 'second' ? 'checked' : 'unchecked' }
@@ -89,7 +90,7 @@ function Carrinho(): React.JSX.Element {
       />
 
 <RadioButton
-        value="second"
+        value="sd"
         status={ checked === 'third' ? 'checked' : 'unchecked' }
         onPress={() => setChecked('third')}
       />
@@ -105,15 +106,11 @@ function Carrinho(): React.JSX.Element {
     </View>
 
 
-
-
-
-
-
+<TouchableOpacity style={styles.FinalizarCompra}><Text  style={styles.TextCompra} > Finalizar Compra </Text></TouchableOpacity>
         </View>
-
-
     );
+
+   
 
 }
 
@@ -144,7 +141,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: 'white',
         marginTop: 5,
-        fontFamily: 'oblique'
+        fontFamily:'sans-serif'
     },
     item: {
         padding: 20,
@@ -191,6 +188,34 @@ const styles = StyleSheet.create({
         fontSize:20,
    
     },
+    FinalizarCompra:{
+        borderWidth: 1,
+        borderBlockColor: 'orangered',
+        backgroundColor: 'orangered',
+        width: 370,
+        height: 40,
+        marginLeft: 10,
+        borderRadius: 1
+    },
+    TextCompra:{
+        fontSize: 20,
+        textAlign: 'center',
+        color: 'white',
+        marginTop: 5,
+        fontFamily:'Fantasy'
+    },
+    formaPagementos:{
+fontFamily:'fantasy',
+fontSize: 20,
+color:'orangered',
+fontWeight: 'bold',
+marginTop:10,
+
+    },
+    Rd1:{
+        marginVertical:20
+    }
+
    
 
 
