@@ -50,6 +50,7 @@ const renderItem = ({ item }: { item: MenuItem }) => (
 
 
 function CardapioListagem(): React.JSX.Element {
+    
     return (
         <View style={styles.container}>
             <View>
