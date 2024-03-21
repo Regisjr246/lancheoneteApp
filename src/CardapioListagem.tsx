@@ -1,5 +1,6 @@
 import React from "react";
-import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View, TextInput} from "react-native";
+import Pesquise from '../src/Pesquise.tsx';
 
 
 
@@ -9,25 +10,24 @@ interface MenuItem {
     ingredientes: string;
     valor: string;
     image: any;
+    Image:any;
 }
 const dados: MenuItem[] = [
-
-
-    { id: "1", nome: "X-BURGUER", ingredientes: "Pão de Brioche, 2 hamburguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/hamburguer.png') },
-    { id: "2", nome: "X-BURGUER", ingredientes: "Pão de Brioche, 2 hamburguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/hamburguer.png') },
-    { id: "3", nome: "X-BURGUER", ingredientes: "Pão de Brioche, 2 hamburguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/hamburguer.png') },
-    { id: "4", nome: "X-BURGUER", ingredientes: "Pão de Brioche, 2 hamburguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/hamburguer.png') },
-    { id: "5", nome: "X-BURGUER", ingredientes: "Pão de Brioche, 2 hamburguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/hamburguer.png') },
-    { id: "6", nome: "X-BURGUER", ingredientes: "Pão de Brioche, 2 hamburguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/hamburguer.png') },
-    { id: "7", nome: "X-BURGUER", ingredientes: "Pão de Brioche, 2 hamburguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/hamburguer.png') },
-    { id: "8", nome: "X-BURGUER", ingredientes: "Pão de Brioche, 2 hamburguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/hamburguer.png') },
-    { id: "9", nome: "X-BURGUER", ingredientes: "Pão de Brioche, 2 hamburguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/hamburguer.png') },
-    { id: "10", nome: "X-BURGUER", ingredientes: "Pão de Brioche, 2 hamburguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/hamburguer.png') },
-    { id: "11", nome: "X-BURGUER", ingredientes: "Pão de Brioche, 2 hamburguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/hamburguer.png') },
-    { id: "12", nome: "X-BURGUER", ingredientes: "Pão de Brioche, 2 hamburguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/hamburguer.png') },
-    { id: "13", nome: "X-BURGUER", ingredientes: "Pão de Brioche, 2 hamburguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/hamburguer.png') },
-    { id: "14", nome: "X-BURGUER", ingredientes: "Pão de Brioche, 2 hamburguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/hamburguer.png') },
-    { id: "15", nome: "X-BURGUER", ingredientes: "Pão de Brioche, 2 hamburguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/hamburguer.png') },
+    { id: "1", nome: "BURGUER STAR 1", ingredientes: "Pão de Brioche, 2 hambúrguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/h0.png'), Image: require('./assets/images/h+.png') },
+    { id: "2", nome: "BURGUER STAR 2" , ingredientes: "Pão de Brioche, 2 hambúrguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/h1.png'), Image: require('./assets/images/h+.png') },
+    { id: "3", nome: "BURGUER STAR 3", ingredientes: "Pão de Brioche, 2 hambúrguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/h2.png') , Image: require('./assets/images/h+.png')},
+    { id: "4", nome: "BURGUER STAR 4", ingredientes: "Pão de Brioche, 2 hambúrguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/h3.png'), Image: require('./assets/images/h+.png') },
+    { id: "5", nome: "BURGUER STAR 5", ingredientes: "Pão de Brioche, 2 hambúrguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/h4.png'), Image: require('./assets/images/h+.png') },
+    { id: "6", nome: "BURGUER STAR 6", ingredientes: "Pão de Brioche, 2 hambúrguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/h5.png') , Image: require('./assets/images/h+.png')},
+    { id: "7", nome: "BURGUER STAR 7", ingredientes: "Pão de Brioche, 2 hambúrguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/h6.png') , Image: require('./assets/images/h+.png')},
+    { id: "8", nome: "BURGUER STAR 8", ingredientes: "Pão de Brioche, 2 hambúrguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/h7.png'), Image: require('./assets/images/h+.png') },
+    { id: "9", nome: "BURGUER STAR 9", ingredientes: "Pão de Brioche, 2 hambúrguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/h8.png') , Image: require('./assets/images/h+.png')},
+    { id: "10", nome: "BURGUER STAR 10", ingredientes: "Pão de Brioche, 2 hambúrguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/h9.png'), Image: require('./assets/images/h+.png') },
+    { id: "11", nome: "BURGUER STAR 11", ingredientes: "Pão de Brioche, 2 hambúrguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/h10.png'), Image: require('./assets/images/h+.png') },
+    { id: "12", nome: "BURGUER STAR 12", ingredientes: "Pão de Brioche, 2 hambúrguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/h11.png') , Image: require('./assets/images/h+.png')},
+    { id: "13", nome: "BURGUER STAR 13", ingredientes: "Pão de Brioche, 2 hambúrguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/h12.png'), Image: require('./assets/images/h+.png') },
+    { id: "14", nome: "BURGUER STAR 14", ingredientes: "Pão de Brioche, 2 hambúrguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/h13.png') , Image: require('./assets/images/h+.png')},
+    { id: "15", nome: "BURGUER STAR 15", ingredientes: "Pão de Brioche, 2 hambúrguer de 150g,queijo chedar, ", valor: "R$12,90", image: require('./assets/images/h14.png') , Image: require('./assets/images/h+.png')},
 ];
 
 
@@ -37,6 +37,10 @@ const renderItem = ({ item }: { item: MenuItem }) => (
         <Text style={styles.textIngredientes}>{item.ingredientes} </Text>
         <Text style={styles.textValor}>{item.valor} </Text>
         <Image source={item.image} style={styles.imageCardapio} />
+        <TouchableOpacity >
+        <Image source={item.Image} style={styles.imageIcon} />
+        </TouchableOpacity>
+    
     </TouchableOpacity>
 );
 
@@ -46,17 +50,25 @@ function CardapioListagem(): React.JSX.Element {
         <View style={styles.container}>
             <View>
                 <TouchableOpacity>
-                    <Image source={require('./assets/images/marca.png')} style={styles.hamburguerIcon} />
+                    <Image source={require('./assets/images/marca.png')} style={styles.hIcon} />
                 </TouchableOpacity>
             </View>
 
-            <View>
-                <Text style={styles.especialides}>Hamburgues</Text>
-            </View>
+           
+              
+                
+                <Pesquise/>
+               
+           
 
-            <FlatList
+
+
+
+
+
+            <FlatList   
                 showsVerticalScrollIndicator={false}
-                data={dados}
+                data={dados} 
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id} />
 
@@ -99,7 +111,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'white'
     },
-    hamburguerIcon: {
+    hIcon: {
         alignItems: 'center',
         width: 150,
         height: 100,
@@ -128,6 +140,7 @@ const styles = StyleSheet.create({
     textNome: {
         color: 'black',
         marginLeft: 80,
+        fontWeight:'bold',
     },
     textIngredientes: {
         color: 'black',
@@ -137,8 +150,22 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     textValor: {
-        color: 'black',
+        color: 'red',
         marginLeft: 80,
+        fontWeight:'bold',
+       marginTop:1,
+       
+    },
+    imageIcon:{
+        width: 30,
+        height: 30,
+        marginLeft:300,
+        marginVertical: -15,
+        
+    },
+    pesquisa:{
+     marginTop:-50,
+       
     }
 });
 
