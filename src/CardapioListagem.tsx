@@ -87,7 +87,7 @@ function CardapioListagem(): React.JSX.Element {
                 </TouchableOpacity>
 
                 <TouchableOpacity>
-                    <Image source={require('./assets/images/config.png')} style={styles.footerIcon} />
+                    <Image source={require('./assets/images/user.png')} style={styles.footerIcon} />
                 </TouchableOpacity>
 
             </View>
@@ -102,6 +102,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'flex-start',
         paddingVertical: 10,
+        
     },
     footerIcon: {
         width: 40,
