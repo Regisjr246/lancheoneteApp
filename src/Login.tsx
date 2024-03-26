@@ -46,9 +46,9 @@ function Login(): React.JSX.Element {
                     <TouchableOpacity style={styles.entrar}><Text style={styles.entrarText}>Entrar</Text></TouchableOpacity>
 
                     <View style={styles.icons}>
-                        <TouchableOpacity style={styles.loginRedesSocias}><Image source={require('./assets/images/IconGoogle.png')} style={styles.google} /><Text style={styles.textGoogle}>Continue com Google</Text></TouchableOpacity>
+                        <TouchableOpacity style={styles.loginRedesSociais}><Image source={require('./assets/images/IconGoogle.png')} style={styles.google} /><Text style={styles.textGoogle}>Continue com Google</Text></TouchableOpacity>
 
-                        <TouchableOpacity style={styles.loginRedesSocias}><Image source={require('./assets/images/IconInstagram.png')} style={styles.instagram} /><Text style={styles.textInstagram}>Continue com Instagram</Text></TouchableOpacity>
+                        <TouchableOpacity style={styles.loginRedesSociais}><Image source={require('./assets/images/IconInstagram.png')} style={styles.instagram} /><Text style={styles.textInstagram}>Continue com Instagram</Text></TouchableOpacity>
 
                     </View>
 
@@ -90,16 +90,15 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
 
-        backgroundColor: 'yellow'
+        backgroundColor: '#FFFF00#FFFF00'
     },
 
     login: {
         borderWidth: 1,
-        borderBlockColor: '#6A5ACD',
-        backgroundColor: '#6A5ACD',
+        borderColor: '#FF0000', // Vermelho para o contorno
+        backgroundColor: '#FF0000', // Vermelho para o fundo
         width: 'auto',
-        height: 200
-
+        height: 250
     },
 
     campos: {
@@ -123,7 +122,7 @@ const styles = StyleSheet.create({
     },
     entrar: {
         borderWidth: 10,
-        backgroundColor: 'black',
+        backgroundColor: 'black', // Mantendo o botão "Entrar" em preto
         width: 350,
         marginVertical: 30,
         marginLeft: 20,
@@ -135,9 +134,9 @@ const styles = StyleSheet.create({
         fontSize: 20,
         marginLeft: 140
     },
-    loginRedesSocias: {
+    loginRedesSociais: {
         borderWidth: 10,
-        backgroundColor: 'black',
+        backgroundColor: 'black', // Mantendo os botões de login com redes sociais em preto
         width: 350,
         marginVertical: 1,
         marginLeft: 20,
@@ -168,12 +167,12 @@ const styles = StyleSheet.create({
         fontSize: 20,
     },
     EsqSenha: {
-        color: 'black',
+        color: '#333333', // Cinza escuro para o texto "Esqueceu a senha?"
         marginLeft: 230,
         lineHeight: 40
     },
     icons:{
-        marginVertical:80
+        marginVertical:5
     },
     loginText:{
         fontSize:40,
@@ -184,7 +183,7 @@ const styles = StyleSheet.create({
     marca:{
         height:200,
         width:200,
-        marginLeft:110,
+        marginLeft:100,
         marginVertical:-10
     }
 
