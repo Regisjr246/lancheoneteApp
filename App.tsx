@@ -3,7 +3,7 @@ import React from 'react';
 import CardapioListagem from './src/CardapioListagem';
 import Carrinho from './src/Carrinho';
 
-
+import Login from './src/Login';
 
 
 
@@ -15,8 +15,8 @@ import Carrinho from './src/Carrinho';
 function App(): React.JSX.Element {
   return (
   //<CardapioListagem/>
-   <Carrinho/>
- 
+   //<Carrinho/>
+ <Login/>
  
  );
 }
