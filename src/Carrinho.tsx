@@ -50,13 +50,15 @@ function Carrinho(): React.JSX.Element {
                 <TouchableOpacity>
                     <Image source={require('./assets/images/marca.png')} style={styles.hIcon} />
                 </TouchableOpacity>
+
+                <Text style={styles.meuPedido}>Meu Pedido</Text>
                 <TouchableOpacity style={styles.buttonCarrinho}><Text style={styles.textPedido} >Enviar Pedido</Text></TouchableOpacity>
             </View>
 
 
 
             <FlatList
-                showsVerticalScrollIndicator={false}
+                showsVerticalScrollIndicator={true}
                 data={dados}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id} />
@@ -75,35 +77,43 @@ function Carrinho(): React.JSX.Element {
 
 
 <Text style={styles.formaPagementos}>Forma de Pagamento:</Text>
+<View style={styles.Rd1}>
+  <View style={styles.radioButtonContainer}>
+    <RadioButton
+      value="Pix"
+      status={checked === 'first' ? 'checked' : 'unchecked'}
+      onPress={() => setChecked('first')}
+    />
+    <Text style={styles.radioButtonText}>Pix</Text>
+  </View>
 
-    <View style={styles.Rd1}>
+  <View style={styles.radioButtonContainer}>
+    <RadioButton
+      value="Cartao de credito"
+      status={checked === 'second' ? 'checked' : 'unchecked'}
+      onPress={() => setChecked('second')}
+    />
+    <Text style={styles.radioButtonText}>Cartão de Crédito</Text>
+  </View>
 
-      <RadioButton
-         value="Teste"
-        status={ checked === 'first' ? 'checked' : 'unchecked' }
-        onPress={() => setChecked('first')} >
-            </RadioButton> 
-      <RadioButton
-        value="second"
-        status={ checked === 'second' ? 'checked' : 'unchecked' }
-        onPress={() => setChecked('second')}
-      />
+  <View style={styles.radioButtonContainer}>
+    <RadioButton
+      value="Cartao de debito"
+      status={checked === 'third' ? 'checked' : 'unchecked'}
+      onPress={() => setChecked('third')}
+    />
+    <Text style={styles.radioButtonText}>Cartão de Débito</Text>
+  </View>
 
-<RadioButton
-        value="sd"
-        status={ checked === 'third' ? 'checked' : 'unchecked' }
-        onPress={() => setChecked('third')}
-      />
-
-
-
-<RadioButton
-        value="second"
-        status={ checked === 'fourth' ? 'checked' : 'unchecked' }
-        onPress={() => setChecked('fourth')}
-       />
-
-    </View>
+  <View style={styles.radioButtonContainer}>
+    <RadioButton
+      value="Criptomoeda"
+      status={checked === 'fourth' ? 'checked' : 'unchecked'}
+      onPress={() => setChecked('fourth')}
+    />
+    <Text style={styles.radioButtonText}>Criptomoeda</Text>
+  </View>
+</View>
 
 
 <TouchableOpacity style={styles.FinalizarCompra}><Text  style={styles.TextCompra} > Finalizar Compra </Text></TouchableOpacity>
@@ -195,7 +205,8 @@ const styles = StyleSheet.create({
         width: 370,
         height: 40,
         marginLeft: 10,
-        borderRadius: 1
+        borderRadius: 2,
+        marginVertical:-20   
     },
     TextCompra:{
         fontSize: 20,
@@ -209,12 +220,29 @@ fontFamily:'fantasy',
 fontSize: 20,
 color:'orangered',
 fontWeight: 'bold',
-marginTop:10,
+marginTop:5,
 
     },
     Rd1:{
         marginVertical:20
-    }
+    },
+    meuPedido:{
+        marginVertical:1,
+        color:'red',
+        marginLeft:12,
+        fontSize:30
+    
+    },
+    radioButtonContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 5,
+      },
+      radioButtonText: {
+        marginLeft: 10,
+        fontSize: 16, 
+        color: 'black', 
+      },
 
    
 
