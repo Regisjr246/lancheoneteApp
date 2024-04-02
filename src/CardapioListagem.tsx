@@ -35,7 +35,7 @@ const dados: MenuItem[] = [
 
 
 const renderItem = ({ item }: { item: MenuItem }) => (
-    <TouchableOpacity style={styles.item}>
+    <View style={styles.item}>
         <Text style={styles.textNome}>{item.nome}  </Text>
         <Text style={styles.textIngredientes}>{item.ingredientes} </Text>
         <Text style={styles.textValor}>{item.valor} </Text>
@@ -44,7 +44,7 @@ const renderItem = ({ item }: { item: MenuItem }) => (
             <Image source={item.Image} style={styles.imageIcon} />
         </TouchableOpacity>
 
-    </TouchableOpacity>
+    </View>
 
 );
 
