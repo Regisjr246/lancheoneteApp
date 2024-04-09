@@ -8,15 +8,22 @@ return(
 
 
 <View style={styles.fundo}>
+   
+<View style={styles.alinhamento}>
+
+    
+                <Image source={require('../assets/images/use.png')} style={styles.user} />
+                <View><TouchableOpacity><Text style={styles.addFoto}>Adicionar foto</Text></TouchableOpacity></View>
+                </View>
+                
+<View style={styles.alinhamentoCenter}>
 <View><Text style={styles.criar}>Criar conta</Text></View>
 
 <View><Text style={styles.inscr}>Inscreva-se para começar</Text></View>
 </View>
+</View>
 <View style={styles.border} >
 
-<View>
-                <Image source={require('../assets/images/use.png')} style={styles.user} />
-                </View>
 
 <View>
 
@@ -87,7 +94,7 @@ return(
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#d1d3dc',
+        backgroundColor: '#fff8dc',
         alignItems: 'center',
         flex:1
 
@@ -95,57 +102,54 @@ const styles = StyleSheet.create({
 
     border: {
         borderWidth: 2,
-        borderColor: '#3b4344',
+        borderColor: '#fff8dc',
         padding: 10,
         width: 350,
-        marginVertical: 20,
+        marginVertical: -5,
         alignItems: 'center',
         borderRadius:50,
-        backgroundColor:'#333237'
+        backgroundColor:'#fff8dc'
     },
  
     texto: {
-        color: 'white',
+        color: 'black',
         fontSize: 20
     },
     input: {
         borderWidth: 1,
-        borderColor: '#e9f2f9',
-        borderRadius: 20,
+        borderColor: '#ffe4e1',
+        borderRadius: 10,
         width: 300,
-        height:44,
-        backgroundColor: '#e9f2f9',
+        height:50,
+        backgroundColor: '#ffe4e1',
         marginTop: 20
 
     },
     fundo: {
-        backgroundColor: '#333237',
-        alignItems: 'center',
-        paddingVertical: 100,
-        borderBottomLeftRadius: 100,
-        borderBottomRightRadius: 100,
-        width: 400
+        
     },
     criar: {
-        fontSize: 60,
-        color: 'white',
-        marginVertical: -90
+        fontSize: 30,
+        color:  '#663153',
+fontWeight:'bold'     ,
+marginVertical:-35
     },
     inscr: {
         fontSize: 20,
-        color: 'white',
-        marginVertical: -10
+        color:  '#663153',
+        fontWeight:'bold',  
+       marginVertical:0
     },
     botao: {
         borderWidth: 1,
         width: 150,
-        borderColor: '#e9e2da',
+        borderColor: '#663153',
         alignItems: 'center',
         height: 50,
         padding: 3,
         borderRadius: 20,
         marginVertical: 10,
-        backgroundColor: '#9cc4e4'
+        backgroundColor: '#663153'
     },
     textbotao: {
         fontSize: 20,
@@ -156,7 +160,8 @@ const styles = StyleSheet.create({
     user:{
         height:100,
         width:100,
-        
+        marginVertical:50
+       
     },
     imageUse:{
         marginVertical:-20
@@ -165,6 +170,18 @@ const styles = StyleSheet.create({
 height:70,
 width:70,
 marginVertical:-50
+    },
+    alinhamento:{
+        alignItems:'center',
+    },
+    alinhamentoCenter:{
+        alignItems:'center',
+    },
+    addFoto:{
+        color:  '#663153',
+        fontWeight:'bold',
+        marginTop:-55
+        
     }
 
 

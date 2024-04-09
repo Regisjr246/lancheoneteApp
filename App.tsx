@@ -6,6 +6,7 @@ import CadastroProduto from './src/screens/CadastroProduto';
 import Login from './src/Login';
 import CadastroCliente from './src/Cadastros/CadastroCliente';
 
+import CadastroUsuario from './src/Cadastros/CadastrosUsuario';
 
 
 
@@ -19,8 +20,10 @@ function App(): React.JSX.Element {
   //<CadastroProduto/> 
   //<Carrinho/>
  //<Login/>
- <CadastroCliente/>
- );
+ //<CadastroCliente/>
+ 
+<CadastroUsuario/>
+);
 }
 
 
