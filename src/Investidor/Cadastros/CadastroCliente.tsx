@@ -12,7 +12,7 @@ const CadastroClienteInvestidor: React.FC = () => {
     const [endereco, setEndereco] = useState<string>('');
     const [telefone, setTelefone] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-   
+    const [errors, setErrors] = useState<any>({});
     const [cpf, setCpf] = useState<string>('');
     const [imagem, setImagem] = useState<any>('');
 
@@ -84,8 +84,21 @@ const CadastroClienteInvestidor: React.FC = () => {
                 }
             });
         } catch (error) {
-            console.log(error);
+            if (error.response && error.response.data && error.response.data.errors) {
+                setErrors(error.response.data.errors);
+            } else {
+                console.log(error);
+            }
         }
+        
+    }
+    const renderError = (name: string) => {
+        if (errors[name]) {
+            return (
+                <Text style={styles.errorText}>{errors[name][0]}</Text>
+            );
+        }
+        return null;
     }
 
     return (
@@ -107,36 +120,40 @@ const CadastroClienteInvestidor: React.FC = () => {
                 <View><TouchableOpacity><Text style={styles.addFoto} onPress={selecionarImagem}>Adicionar foto</Text></TouchableOpacity></View>
 
                 <View>
-                    <Text style={styles.text}>Nome</Text>
-                    <TextInput placeholder="Nome" style={styles.input} onChangeText={setNome} ></TextInput>
-                </View>
+    <Text style={styles.text}>Nome</Text>
+    <TextInput placeholder="Nome" style={styles.input} onChangeText={setNome} ></TextInput>
+    {renderError('nome')}
+</View>
 
-                <View>
-                    <Text style={styles.text}>Email</Text>
-                    <TextInput keyboardType={'email-address'} placeholder="E-mail" style={styles.input} value={email} onChangeText={setEmail}></TextInput>
-                </View>
+<View>
+    <Text style={styles.text}>Email</Text>
+    <TextInput keyboardType={'email-address'} placeholder="E-mail" style={styles.input} value={email} onChangeText={setEmail}></TextInput>
+    {renderError('email')}
+</View>
 
-                <View>
-                    <Text style={styles.text}>Endereço</Text>
-                    <TextInput placeholder="Endereço" style={styles.input} value={endereco} onChangeText={setEndereco}></TextInput>
-                </View>
+<View>
+    <Text style={styles.text}>Endereço</Text>
+    <TextInput placeholder="Endereço" style={styles.input} value={endereco} onChangeText={setEndereco}></TextInput>
+    {renderError('endereco')}
+</View>
 
+<View>
+    <Text style={styles.text}>CPF</Text>
+    <TextInput keyboardType={'numeric'} placeholder="CPF" style={styles.input} value={cpf} onChangeText={setCpf}></TextInput>
+    {renderError('cpf')}
+</View>
 
-                <View>
-                    <Text style={styles.text}>CPF</Text>
-                    <TextInput keyboardType={'numeric'} placeholder="CPF" style={styles.input} value={cpf} onChangeText={setCpf}></TextInput>
-                </View>
+<View>
+    <Text style={styles.text}>Telefone</Text>
+    <TextInput keyboardType={'numeric'} placeholder="Telefone" style={styles.input} value={telefone} onChangeText={setTelefone}></TextInput>
+    {renderError('telefone')}
+</View>
 
-                <View>
-                    <Text style={styles.text}>Telefone</Text>
-                    <TextInput keyboardType={'numeric'} placeholder="Telefone" style={styles.input} value={telefone} onChangeText={setTelefone}></TextInput>
-                </View>
-
-                <View>
-                    <Text style={styles.text}>Senha</Text>
-                    <TextInput secureTextEntry={true} placeholder="Senha" style={styles.input} value={password} onChangeText={setPassword}></TextInput>
-                </View>
-
+<View>
+    <Text style={styles.text}>Senha</Text>
+    <TextInput secureTextEntry={true} placeholder="Senha" style={styles.input} value={password} onChangeText={setPassword}></TextInput>
+    {renderError('password')}
+</View>
                 
 
                 <View style={styles.botaoRegistrar}><TouchableOpacity  onPress={cadastrarCliente}><Text style={styles.textRegistrar} >Registrar</Text></TouchableOpacity></View>
@@ -240,6 +257,12 @@ const styles = StyleSheet.create({
         fontSize: 30,
         fontWeight: 'bold',
         color: 'white',
+    },
+    errorText: {
+        color: 'red',
+        marginLeft: 15,
+        marginVertical: 2,
+        fontSize: 15,
     },
 
 });
