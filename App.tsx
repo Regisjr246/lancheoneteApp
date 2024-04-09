@@ -8,7 +8,7 @@ import CadastroCliente from './src/Cadastros/CadastroCliente';
 
 import CadastroUsuario from './src/Cadastros/CadastrosUsuario';
 
-
+import CadastroClienteInvestidor from './src/Investidor/Cadastros/CadastroCliente';
 
 
 
@@ -22,7 +22,9 @@ function App(): React.JSX.Element {
  //<Login/>
  //<CadastroCliente/>
  
-<CadastroUsuario/>
+//<CadastroUsuario/>
+
+<CadastroClienteInvestidor/>
 );
 }
 
