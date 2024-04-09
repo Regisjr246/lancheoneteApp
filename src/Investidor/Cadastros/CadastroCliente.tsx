@@ -69,9 +69,7 @@ const CadastroClienteInvestidor: React.FC = () => {
             formData.append('endereco', endereco);
             formData.append('cpf', cpf);
             formData.append('telefone', telefone);
-
             formData.append('password', password);
-     
             formData.append('imagem', {
                 uri: imagem,
                 type: 'image/jpeg',
@@ -80,12 +78,11 @@ const CadastroClienteInvestidor: React.FC = () => {
 
             console.log(formData);
 
-            const response = await axios.post('http://10.137.11.214:8000/api/clientes/cadastro', formData, {
+            const response = await axios.post('http://192.168.1.18:8000/api/clientes/cadastro', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
-            console.log(response);
         } catch (error) {
             console.log(error);
         }
