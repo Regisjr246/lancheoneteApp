@@ -3,7 +3,7 @@ import { StyleSheet, Image, Text, TextInput, Touchable, TouchableOpacity, View }
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import Footer from '..//../Footer';
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
-import axios from "axios";
+import axios, { formToJSON } from "axios";
 
 
 const CadastroClienteInvestidor: React.FC = () => {
@@ -78,11 +78,14 @@ const CadastroClienteInvestidor: React.FC = () => {
                 name: new Date() + '.jpg'
             });
 
+            console.log(formData);
+
             const response = await axios.post('http://10.137.11.214:8000/api/clientes/cadastro', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
+            console.log(response);
         } catch (error) {
             console.log(error);
         }
