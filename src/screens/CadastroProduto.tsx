@@ -10,10 +10,7 @@ const CadastroProduto: React.FC = () => {
     const [imagem, setImagem] = useState<any>('');
 
 
-    const CadastroProduto = async () => {
-
-    }
-
+ 
 
     const selecionarImagem = () => {
         const options = {
