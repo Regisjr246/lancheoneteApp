@@ -67,10 +67,10 @@ const CadastroClienteInvestidor: React.FC = () => {
             formData.append('nome', nome);
             formData.append('email', email);
             formData.append('endereco', endereco);
-            formData.append('Cpf', cpf);
+            formData.append('cpf', cpf);
             formData.append('telefone', telefone);
 
-            formData.append('Password', password);
+            formData.append('password', password);
      
             formData.append('imagem', {
                 uri: imagem,
