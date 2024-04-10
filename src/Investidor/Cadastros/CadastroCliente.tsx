@@ -12,9 +12,9 @@ const CadastroClienteInvestidor: React.FC = () => {
     const [endereco, setEndereco] = useState<string>('');
     const [telefone, setTelefone] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const [errors, setErrors] = useState<any>({});
     const [cpf, setCpf] = useState<string>('');
     const [imagem, setImagem] = useState<any>('');
+    const [errors, setErrors] = useState<any>({});
 
 
 
