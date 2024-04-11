@@ -6,13 +6,11 @@ import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 import axios, { formToJSON } from "axios";
 
 
-const CadastroClienteInvestidor: React.FC = () => {
+const CadastroProdutoInvestidor: React.FC = () => {
     const [nome, setNome] = useState<string>('');
-    const [email, setEmail] = useState<string>('');
-    const [endereco, setEndereco] = useState<string>('');
-    const [telefone, setTelefone] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
-    const [cpf, setCpf] = useState<string>('');
+    const [preco, setPreco] = useState<string>('');
+    const [ingredientes, setIngredientes] = useState<string>('');
+  
     const [imagem, setImagem] = useState<any>('');
     const [errors, setErrors] = useState<any>({});
 
@@ -59,17 +57,15 @@ const CadastroClienteInvestidor: React.FC = () => {
         });
     }
 
-    const cadastrarCliente = async () => {
+    const cadastrarProduto = async () => {
         try {
 
 
             const formData = new FormData();
             formData.append('nome', nome);
-            formData.append('email', email);
-            formData.append('endereco', endereco);
-            formData.append('cpf', cpf);
-            formData.append('telefone', telefone);
-            formData.append('password', password);
+            formData.append('ingredientes', ingredientes);
+            formData.append('preco', preco);
+          
             formData.append('imagem', {
                 uri: imagem,
                 type: 'image/jpeg',
@@ -78,7 +74,7 @@ const CadastroClienteInvestidor: React.FC = () => {
 
             console.log(formData);
 
-            const response = await axios.post('http://10.137.11.214:8000/api/clientes/cadastro', formData, {
+            const response = await axios.post('http://10.137.11.214:8000/api/produtos', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -112,53 +108,44 @@ const CadastroClienteInvestidor: React.FC = () => {
             </View>
             <View style={styles.borda}>
                 <ScrollView>
+
+
+            
+<View >
                 <TouchableOpacity onPress={abrirCamera}>
 
 
-                    {imagem ? <Image source={{ uri: imagem }} style={styles.user} /> : <Image source={require('../../assets/images/UserCliente.png')} style={styles.user} />}
+                    {imagem ? <Image source={{ uri: imagem }} style={styles.user} /> : <Image source={require('../../assets/images/ProdutoAdd.png')} style={styles.user} />}
 
                 </TouchableOpacity>
-
+                </View>
                 <View><TouchableOpacity><Text style={styles.addFoto} onPress={selecionarImagem}>Adicionar foto</Text></TouchableOpacity></View>
 
                 <View>
+
+                 
     <Text style={styles.text}>Nome</Text>
     <TextInput placeholder="Nome" style={styles.input} onChangeText={setNome} ></TextInput>
     {renderError('nome')}
 </View>
 
+
+
 <View>
-    <Text style={styles.text}>Email</Text>
-    <TextInput keyboardType={'email-address'} placeholder="E-mail" style={styles.input} value={email} onChangeText={setEmail}></TextInput>
-    {renderError('email')}
+    <Text style={styles.text}>Ingredientes</Text>
+    <TextInput placeholder="Ingredientes" style={styles.input} value={ingredientes} onChangeText={setIngredientes}></TextInput>
+    {renderError('ingredientes')}
 </View>
 
 <View>
-    <Text style={styles.text}>Endereço</Text>
-    <TextInput placeholder="Endereço" style={styles.input} value={endereco} onChangeText={setEndereco}></TextInput>
-    {renderError('endereco')}
+    <Text style={styles.text}>Preço</Text>
+    <TextInput keyboardType={'decimal-pad'} placeholder="Preço" style={styles.input} value={preco} onChangeText={setPreco}></TextInput>
+    {renderError('preco')}
 </View>
 
-<View>
-    <Text style={styles.text}>CPF</Text>
-    <TextInput keyboardType={'numeric'} placeholder="CPF" style={styles.input} value={cpf} onChangeText={setCpf}></TextInput>
-    {renderError('cpf')}
-</View>
-
-<View>
-    <Text style={styles.text}>Telefone</Text>
-    <TextInput keyboardType={'numeric'} placeholder="Telefone" style={styles.input} value={telefone} onChangeText={setTelefone}></TextInput>
-    {renderError('telefone')}
-</View>
-
-<View>
-    <Text style={styles.text}>Senha</Text>
-    <TextInput secureTextEntry={true} placeholder="Senha" style={styles.input} value={password} onChangeText={setPassword}></TextInput>
-    {renderError('password')}
-</View>
                 
 
-                <View style={styles.botaoRegistrar}><TouchableOpacity  onPress={cadastrarCliente}><Text style={styles.textRegistrar} >Registrar</Text></TouchableOpacity></View>
+                <View style={styles.botaoRegistrar}><TouchableOpacity  onPress={cadastrarProduto}><Text style={styles.textRegistrar} >Cadastrar</Text></TouchableOpacity></View>
                 </ScrollView>
             </View>
 
@@ -206,20 +193,24 @@ const styles = StyleSheet.create({
         borderRadius: 40,
         marginLeft: 25,
         backgroundColor: 'white',
-        marginTop: 15,
+        marginTop: 70,
+        
+ 
 
     },
     addFoto: {
-        marginLeft: 120,
+        marginLeft: 130,
         color: 'black',
         fontWeight: 'bold'
     },
     user: {
         borderWidth: 1,
-        borderRadius: 50,
+        borderRadius: 600,
         width: 100,
         height: 100,
-        marginLeft: 120
+        marginLeft: 120,
+        marginVertical:10
+
     },
     botaoRegistrar: {
         marginLeft: 110,
@@ -273,7 +264,8 @@ marca:{
     marginVertical:2,
     alignItems:'center',
     
-}
+},
+
 });
 
-export default CadastroClienteInvestidor;
+export default CadastroProdutoInvestidor;
