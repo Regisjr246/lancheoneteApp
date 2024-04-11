@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Image, Text, TextInput, Touchable, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Image, Text, TextInput, Touchable, TouchableOpacity, View, ScrollViewBase, ScrollViewComponent, ScrollView } from "react-native";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import Footer from '..//../Footer';
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
@@ -78,7 +78,7 @@ const CadastroClienteInvestidor: React.FC = () => {
 
             console.log(formData);
 
-            const response = await axios.post('http://192.168.1.18:8000/api/clientes/cadastro', formData, {
+            const response = await axios.post('http://10.137.11.214:8000/api/clientes/cadastro', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -106,10 +106,12 @@ const CadastroClienteInvestidor: React.FC = () => {
 
             <View>
                 <View style={styles.header}>
-                    <Text style={styles.headerText}>BurguerStar</Text>
+                <Image source={require('../../assets/images/MarcaDigitalizada.png')} style={styles.marca}/>
+
                 </View>
             </View>
             <View style={styles.borda}>
+                <ScrollView>
                 <TouchableOpacity onPress={abrirCamera}>
 
 
@@ -157,7 +159,7 @@ const CadastroClienteInvestidor: React.FC = () => {
                 
 
                 <View style={styles.botaoRegistrar}><TouchableOpacity  onPress={cadastrarCliente}><Text style={styles.textRegistrar} >Registrar</Text></TouchableOpacity></View>
-
+                </ScrollView>
             </View>
 
 
@@ -264,7 +266,14 @@ const styles = StyleSheet.create({
         marginVertical: 2,
         fontSize: 15,
     },
-
+marca:{
+    borderWidth:1,
+    width:300,
+    height:50,
+    marginVertical:2,
+    alignItems:'center',
+    
+}
 });
 
 export default CadastroClienteInvestidor;
