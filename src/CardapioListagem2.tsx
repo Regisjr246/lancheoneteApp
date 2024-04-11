@@ -10,34 +10,31 @@ const CardapioListagem2 = () => {
         listarProdutos();
     }, []);
 
-
+interface Produto{
+    id: string;
+    nome:string;
+    ingredientes:string;
+    preco:number;
+    imagem:any;
+}
     const listarProdutos = async () => {
         try {
             const response = await axios.get('http://10.137.11.214:8000/api/produtos');
             if (response.status === 200) {
                 setProdutos(response.data); // Set the state with the correct data
-                // console.log(response.data);
+                 console.log(response.data);
             }
         } catch (error) {
             console.log(error);
         }
     }
 
-    interface Produtos {
-        id: string;
-        nome: string;
-        ingredientes: string;
-        valor: string;
-        image: any;
-  
-    }
-
-const renderItem = ({ item }: { item: Produtos }) => (
+const renderItem = ({ item }: { item: Produto }) => (
         <View style={styles.item}>
             <Text style={styles.textNome}>{item.nome}</Text>
             <Text style={styles.textIngredientes}>{item.ingredientes}</Text>
-            <Text style={styles.textValor}>{item.valor}</Text>
-            <Image source={{ uri: item.image }} style={styles.imageCardapio} />
+            <Text style={styles.textValor}>{item.preco}</Text>
+            <Image source={{ uri: item.imagem }} style={styles.imageCardapio} />
         </View>
     );
 
@@ -46,7 +43,7 @@ const renderItem = ({ item }: { item: Produtos }) => (
             <FlatList
                 data={produtos}
                 renderItem={renderItem}
-                keyExtractor={item => item.id}
+                keyExtractor={(produtos) => produtos.id}
             />
         </View>
     );
