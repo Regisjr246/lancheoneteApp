@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
         width: 100,
         height: 100,
         marginLeft: -20,
-        marginVertical: -50,
+        marginVertical: -60,
         marginTop: -48
     },
     textNome: {
