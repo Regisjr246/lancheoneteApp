@@ -24,8 +24,8 @@ function App(): React.JSX.Element {
  //<CadastroCliente/>
  
 //<CadastroUsuario/>
-<CadastroProdutoInvestidor/>
-//<CadastroClienteInvestidor/>
+//<CadastroProdutoInvestidor/>
+<CadastroClienteInvestidor/>
 //<CardapioListagem2/>
 );
 }

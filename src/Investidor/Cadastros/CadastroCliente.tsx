@@ -119,8 +119,16 @@ const CadastroClienteInvestidor: React.FC = () => {
                   "Content-Type": "multipart/form-data",
                 },
               }
-            );setMessage('Produto cadastrado');
+            );setMessage('Cliente cadastrado');
             setTimeout(() => setMessage(''), 3000);
+            setNome('');
+            setCpf('');
+            setEmail('');
+            setEndereco('');
+            setPassword('');
+            setTelefone('');
+            setImagem('');
+            setImagem('');
           } catch (error) {
             if (error.response && error.response.data && error.response.data.errors) {
               setErrors(error.response.data.errors);
@@ -163,7 +171,7 @@ const CadastroClienteInvestidor: React.FC = () => {
 
                 <View>
     <Text style={styles.text}>Nome</Text>
-    <TextInput placeholder="Nome" style={styles.input} onChangeText={setNome} ></TextInput>
+    <TextInput placeholder="Nome" style={styles.input} onChangeText={setNome} value={nome} ></TextInput>
     {renderError('nome')}
 </View>
 

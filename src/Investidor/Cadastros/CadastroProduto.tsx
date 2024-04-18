@@ -106,6 +106,10 @@ const CadastroProdutoInvestidor: React.FC = () => {
               );
             setMessage('Produto cadastrado');
             setTimeout(() => setMessage(''), 3000);
+            setNome('');
+            setPreco('');
+            setIngredientes('');
+            setImagem('');
           } catch (error) {
             if (error.response && error.response.data && error.response.data.errors) {
               setErrors(error.response.data.errors);
@@ -148,7 +152,7 @@ const CadastroProdutoInvestidor: React.FC = () => {
                         <View>
 
                             <Text style={styles.text}>Nome</Text>
-                            <TextInput placeholder="Nome" style={styles.input} onChangeText={setNome} ></TextInput>
+                            <TextInput placeholder="Nome" style={styles.input} value={nome} onChangeText={setNome} ></TextInput>
                             {renderError('nome')}
                         </View>
 
