@@ -13,94 +13,133 @@ const CadastroClienteInvestidor: React.FC = () => {
     const [telefone, setTelefone] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [cpf, setCpf] = useState<string>('');
-    const [imagem, setImagem] = useState<any>('');
+    const [imagem, setImagem] = useState<string | undefined>('');
     const [errors, setErrors] = useState<any>({});
 
 
 
-
-    const selecionarImagem = () => {
-        const options = {
-            mediaType: 'photo',
-            includeBase64: false,
-            maxHeight: 2000,
-            macWidth: 2000
-        };
-
-        launchImageLibrary(options, response => {
-            if (response.didCancel) {
-                console.log('cancelado pelo usuário');
-            } else if (response.error) {
-                console.log("erro ao abrir a galeria");
-            } else {
-                let imageUri = response.uri || response.assets?.[0]?.uri;
-                setImagem(imageUri);
-            }
-        });
-    }
-
-    const abrirCamera = () => {
-        const options = {
-            mediaType: 'photo',
-            includeBase64: false,
-            maxHeight: 2000,
-            macWidth: 2000
-        };
-        launchCamera(options, response => {
-            if (response.didCancel) {
-                console.log('cancelado pelo usuário');
-            } else if (response.error) {
-                console.log("erro ao abrir a camera");
-            } else {
-                let imageUri = response.uri || response.assets?.[0]?.uri;
-                setImagem(imageUri);
-                console.log(imageUri);
-            }
-        });
-    }
-
-    const cadastrarCliente = async () => {
-        try {
-
-
-            const formData = new FormData();
-            formData.append('nome', nome);
-            formData.append('email', email);
-            formData.append('endereco', endereco);
-            formData.append('cpf', cpf);
-            formData.append('telefone', telefone);
-            formData.append('password', password);
-            formData.append('imagem', {
-                uri: imagem,
-                type: 'image/jpeg',
-                name: new Date() + '.jpg'
-            });
-
-            console.log(formData);
-
-            const response = await axios.post('http://10.137.11.214:8000/api/clientes/cadastro', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
-        } catch (error) {
-            if (error.response && error.response.data && error.response.data.errors) {
-                setErrors(error.response.data.errors);
-            } else {
-                console.log(error);
-            }
+    const validateForm = () => {
+        const newErrors: any = {};
+    
+        if (!nome) {
+          newErrors.nome = "O campo nome é obrigatório";
         }
-        
-    }
-    const renderError = (name: string) => {
-        if (errors[name]) {
-            return (
-                <Text style={styles.errorText}>{errors[name][0]}</Text>
+    
+        if (!email) {
+          newErrors.email = "O campo email é obrigatório";
+        }
+    
+        if (!endereco) {
+          newErrors.endereco = "O campo endereço é obrigatório";
+        }
+    
+        if (!telefone) {
+          newErrors.telefone = "O campo telefone é obrigatório";
+        }
+    
+        if (!password) {
+          newErrors.password = "O campo senha é obrigatório";
+        }
+    
+        if (!cpf) {
+          newErrors.cpf = "O campo CPF é obrigatório";
+        }
+    
+        if (!imagem) {
+          newErrors.imagem = "Por favor, selecione uma imagem";
+        }
+    
+        setErrors(newErrors);
+    
+        return !Object.keys(newErrors).length;
+      };
+    
+      const selecionarImagem = () => {
+        const options = {
+          mediaType: "photo",
+          includeBase64: false,
+          maxHeight: 2000,
+          maxWidth: 2000,
+        };
+    
+        launchImageLibrary(options, (response) => {
+          if (response.didCancel) {
+            console.log("cancelado pelo usuário");
+          } else if (response.error) {
+            console.log("erro ao abrir a galeria");
+          } else {
+            let imageUri = response.uri || response.assets?.[0]?.uri;
+            setImagem(imageUri);
+          }
+        });
+      };
+    
+      const abrirCamera = () => {
+        const options = {
+          mediaType: "photo",
+          includeBase64: false,
+          maxHeight: 2000,
+          maxWidth: 2000,
+        };
+    
+        launchCamera(options, (response) => {
+          if (response.didCancel) {
+            console.log("cancelado pelo usuário");
+          } else if (response.error) {
+            console.log("erro ao abrir a camera");
+          } else {
+            let imageUri = response.uri || response.assets?.[0]?.uri;
+            setImagem(imageUri);
+            console.log(imageUri);
+          }
+        });
+      };
+    
+      const cadastrarCliente = async () => {
+        if (validateForm()) {
+          try {
+            const formData = new FormData();
+            formData.append("nome", nome);
+            formData.append("email", email);
+            formData.append("endereco", endereco);
+            formData.append("telefone", telefone);
+            formData.append("password", password);
+            formData.append("cpf", cpf);
+            formData.append("imagem", {
+              uri: imagem || "",
+              type: "image/jpeg",
+              name: new Date() + ".jpg",
+            });
+    
+            const response = await axios.post(
+              "http://10.137.11.214:8000/api/clientes/cadastro",
+              formData,
+              {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+                },
+              }
             );
+          } catch (error) {
+            if (
+              error.response &&
+              error.response.data &&
+              error.response.data.errors
+            ) {
+              setErrors(error.response.data.errors);
+            } else {
+              console.log(error);
+            }
+          }
+        }
+      };
+      const renderError = (name: string) => {
+        if (errors[name]) {
+          return <Text style={styles.errorText}>{errors[name]}</Text>;
         }
         return null;
-    }
-
+      };
+    
     return (
         <View style={styles.container} >
 <ScrollView>
@@ -119,7 +158,10 @@ const CadastroClienteInvestidor: React.FC = () => {
 
                 </TouchableOpacity>
 
-                <View><TouchableOpacity><Text style={styles.addFoto} onPress={selecionarImagem}>Adicionar foto</Text></TouchableOpacity></View>
+                <View><TouchableOpacity onPress={selecionarImagem}>
+              <Text style={styles.addFoto}>Selecionar foto</Text>
+            </TouchableOpacity>
+            {renderError("imagem")}</View>
 
                 <View>
     <Text style={styles.text}>Nome</Text>
