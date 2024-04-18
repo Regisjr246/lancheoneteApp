@@ -2,13 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { View, Text, Image, StyleSheet, FlatList } from "react-native";
 
-const CardapioListagem2 = () => {
-    const [produtos, setProdutos] = useState<Produto[]>([]);
-
-
-    useEffect(() => {
-        listarProdutos();
-    }, []);
 
 interface Produto{
     id: string;
@@ -17,12 +10,23 @@ interface Produto{
     preco:number;
     imagem:any;
 }
+
+
+const CardapioListagem2 = () => {
+    const [produtos, setProdutos] = useState<Produto[]>([]);
+
+
+    useEffect(() => {
+        listarProdutos();
+    }, []);
+
+
     const listarProdutos = async () => {
         try {
             const response = await axios.get('http://10.137.11.214:8000/api/produtos');
             if (response.status === 200) {
                 setProdutos(response.data); // Set the state with the correct data
-                 console.log(response.data);
+                 console.log(produtos);
             }
         } catch (error) {
             console.log(error);
@@ -34,7 +38,7 @@ const renderItem = ({ item }: { item: Produto }) => (
             <Text style={styles.textNome}>{item.nome}</Text>
             <Text style={styles.textIngredientes}>{item.ingredientes}</Text>
             <Text style={styles.textValor}>{item.preco}</Text>
-            <Image source={{ uri: item.imagem }} style={styles.imageCardapio} />
+            { item.imagem != null ? <Image source={{ uri: item.imagem.toString() }} style={styles.imageCardapio} /> : <Image source={ require('./assets/images/CameraProduto.png')} /> }
         </View>
     );
 

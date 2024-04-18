@@ -25,8 +25,8 @@ function App(): React.JSX.Element {
  
 //<CadastroUsuario/>
 //<CadastroProdutoInvestidor/>
-<CadastroClienteInvestidor/>
-//<CardapioListagem2/>
+//<CadastroClienteInvestidor/>
+<CardapioListagem2/>
 );
 }
 

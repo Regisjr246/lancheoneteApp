@@ -11,11 +11,35 @@ const CadastroProdutoInvestidor: React.FC = () => {
     const [preco, setPreco] = useState<string>('');
     const [ingredientes, setIngredientes] = useState<string>('');
   
-    const [imagem, setImagem] = useState<any>('');
+    const [imagem, setImagem] = useState<string | undefined>('');
     const [errors, setErrors] = useState<any>({});
 
 
 
+    const validateForm = () => {
+        const newErrors: any = {};
+    
+        if (!nome) {
+          newErrors.nome = "O campo nome é obrigatório";
+        }
+    
+        if (!preco) {
+          newErrors.email = "O campo email é obrigatório";
+        }
+    
+        if (!ingredientes) {
+          newErrors.endereco = "O campo endereço é obrigatório";
+        }
+
+    
+        if (!imagem) {
+          newErrors.imagem = "Por favor, selecione uma imagem";
+        }
+    
+        setErrors(newErrors);
+    
+        return !Object.keys(newErrors).length;
+      };
 
     const selecionarImagem = () => {
         const options = {
