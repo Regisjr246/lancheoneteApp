@@ -15,7 +15,7 @@ const CadastroClienteInvestidor: React.FC = () => {
     const [cpf, setCpf] = useState<string>('');
     const [imagem, setImagem] = useState<string | undefined>('');
     const [errors, setErrors] = useState<any>({});
-
+    const [message, setMessage] = useState<string>('');
 
 
     const validateForm = () => {
@@ -119,16 +119,14 @@ const CadastroClienteInvestidor: React.FC = () => {
                   "Content-Type": "multipart/form-data",
                 },
               }
-            );
+            );setMessage('Produto cadastrado');
+            setTimeout(() => setMessage(''), 3000);
           } catch (error) {
-            if (
-              error.response &&
-              error.response.data &&
-              error.response.data.errors
-            ) {
+            if (error.response && error.response.data && error.response.data.errors) {
               setErrors(error.response.data.errors);
             } else {
-              console.log(error);
+              setMessage('Não cadastrado');
+              setTimeout(() => setMessage(''), 3000);
             }
           }
         }
@@ -201,6 +199,8 @@ const CadastroClienteInvestidor: React.FC = () => {
                 
 
                 <View style={styles.botaoRegistrar}><TouchableOpacity  onPress={cadastrarCliente}><Text style={styles.textRegistrar} >Registrar</Text></TouchableOpacity></View>
+                <View style={styles.alinha}>{message && <View style={styles.message}><Text style={styles.messageText}>{message}</Text></View>}</View>
+
                 </ScrollView>
             </View>
 
@@ -315,6 +315,22 @@ marca:{
     marginVertical:2,
     alignItems:'center',
     
+},
+message: {
+  backgroundColor: 'green',
+  padding: 8,
+  borderRadius: 5,
+  marginTop: 1,
+  alignItems: 'center',
+  width:300
+ 
+},
+messageText: {
+  color: 'white',
+  fontWeight: 'bold',
+},
+alinha:{
+  alignItems:'center'
 }
 });
 

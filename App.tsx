@@ -19,14 +19,14 @@ function App(): React.JSX.Element {
   return (
   //<CardapioListagem/>
   //<CadastroProduto/> 
-  //<Carrinho/>
+ // <Carrinho/>
  //<Login/>
  //<CadastroCliente/>
  
 //<CadastroUsuario/>
 //<CadastroProdutoInvestidor/>
-//<CadastroClienteInvestidor/>
-<CardapioListagem2/>
+  <CadastroClienteInvestidor/>
+//<CardapioListagem2/>
 );
 }
 

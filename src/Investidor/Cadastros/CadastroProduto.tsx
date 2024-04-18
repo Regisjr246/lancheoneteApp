@@ -5,7 +5,6 @@ import Footer from '..//../Footer';
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 import axios, { formToJSON } from "axios";
 
-
 const CadastroProdutoInvestidor: React.FC = () => {
     const [nome, setNome] = useState<string>('');
     const [preco, setPreco] = useState<string>('');
@@ -13,31 +12,33 @@ const CadastroProdutoInvestidor: React.FC = () => {
   
     const [imagem, setImagem] = useState<string | undefined>('');
     const [errors, setErrors] = useState<any>({});
-
-
+    const [message, setMessage] = useState<string>('');
 
     const validateForm = () => {
         const newErrors: any = {};
-    
+
         if (!nome) {
           newErrors.nome = "O campo nome é obrigatório";
-        }
-    
-        if (!preco) {
-          newErrors.email = "O campo email é obrigatório";
-        }
-    
-        if (!ingredientes) {
-          newErrors.endereco = "O campo endereço é obrigatório";
+        } else if (nome.length < 3) {
+          newErrors.nome = "O campo nome deve ter pelo menos 3 caracteres";
         }
 
-    
+        if (!preco) {
+          newErrors.preco = "O campo preço é obrigatório";
+        } else if (isNaN(parseFloat(preco))) {
+          newErrors.preco = "O campo preço deve ser um número";
+        }
+
+        if (!ingredientes) {
+          newErrors.ingredientes = "O campo ingredientes é obrigatório";
+        }
+
         if (!imagem) {
           newErrors.imagem = "Por favor, selecione uma imagem";
         }
-    
+
         setErrors(newErrors);
-    
+
         return !Object.keys(newErrors).length;
       };
 
@@ -82,96 +83,91 @@ const CadastroProdutoInvestidor: React.FC = () => {
     }
 
     const cadastrarProduto = async () => {
-        try {
-
-
+        if (validateForm()) {
+              try {
             const formData = new FormData();
             formData.append('nome', nome);
             formData.append('ingredientes', ingredientes);
             formData.append('preco', preco);
-          
             formData.append('imagem', {
                 uri: imagem,
                 type: 'image/jpeg',
                 name: new Date() + '.jpg'
             });
 
-            console.log(formData);
-
-            const response = await axios.post('http://10.137.11.214:8000/api/produtos', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
+            const response = await axios.post(
+                "http://10.137.11.214:8000/api/produtos",
+                formData,
+                {
+                  headers: {
+                    "Content-Type": "multipart/form-data",
+                  },
                 }
-            });
-        } catch (error) {
+              );
+            setMessage('Produto cadastrado');
+            setTimeout(() => setMessage(''), 3000);
+          } catch (error) {
             if (error.response && error.response.data && error.response.data.errors) {
-                setErrors(error.response.data.errors);
+              setErrors(error.response.data.errors);
             } else {
-                console.log(error);
+              setMessage('Não cadastrado');
+              setTimeout(() => setMessage(''), 3000);
             }
+          }
         }
-        
-    }
+      };
+
     const renderError = (name: string) => {
-        if (errors[name]) {
-            return (
-                <Text style={styles.errorText}>{errors[name][0]}</Text>
-            );
-        }
-        return null;
-    }
+      if (errors[name]) {
+        return <Text style={styles.errorText}>{errors[name]}</Text>;
+      }
+      return null;
+    };
 
     return (
         <View style={styles.container} >
-<ScrollView>
-            <View>
-                <View style={styles.header}>
-                <Image source={require('../../assets/images/MarcaDigitalizada.png')} style={styles.marca}/>
-
-                </View>
-            </View>
-            <View style={styles.borda}>
-                <ScrollView>
-
-
-            
-<View >
-                <TouchableOpacity onPress={abrirCamera}>
-
-
-                    {imagem ? <Image source={{ uri: imagem }} style={styles.user} /> : <Image source={require('../../assets/images/ProdutoAdd.png')} style={styles.user} />}
-
-                </TouchableOpacity>
-                </View>
-                <View><TouchableOpacity><Text style={styles.addFoto} onPress={selecionarImagem}>Adicionar foto</Text></TouchableOpacity></View>
-
+            <ScrollView>
                 <View>
+                    <View style={styles.header}>
+                        <Image source={require('../../assets/images/MarcaDigitalizada.png')} style={styles.marca}/>
 
-                 
-    <Text style={styles.text}>Nome</Text>
-    <TextInput placeholder="Nome" style={styles.input} onChangeText={setNome} ></TextInput>
-    {renderError('nome')}
-</View>
+                    </View>
+                </View>
+                <View style={styles.borda}>
+                    <ScrollView>
+                        <View >
+                            <TouchableOpacity onPress={abrirCamera}>
 
+                                {imagem ? <Image source={{ uri: imagem }} style={styles.user} /> : <Image source={require('../../assets/images/ProdutoAdd.png')} style={styles.user} />}
 
+                            </TouchableOpacity>
+                        </View>
+                        <View><TouchableOpacity><Text style={styles.addFoto} onPress={selecionarImagem}>Adicionar foto</Text></TouchableOpacity>
+                            {renderError("imagem")}</View>
 
-<View>
-    <Text style={styles.text}>Ingredientes</Text>
-    <TextInput placeholder="Ingredientes" style={styles.input} value={ingredientes} onChangeText={setIngredientes}></TextInput>
-    {renderError('ingredientes')}
-</View>
+                        <View>
 
-<View>
-    <Text style={styles.text}>Preço</Text>
-    <TextInput keyboardType={'decimal-pad'} placeholder="Preço" style={styles.input} value={preco} onChangeText={setPreco}></TextInput>
-    {renderError('preco')}
-</View>
+                            <Text style={styles.text}>Nome</Text>
+                            <TextInput placeholder="Nome" style={styles.input} onChangeText={setNome} ></TextInput>
+                            {renderError('nome')}
+                        </View>
 
-                
+                        <View>
+                            <Text style={styles.text}>Ingredientes</Text>
+                            <TextInput placeholder="Ingredientes" style={styles.input} value={ingredientes} onChangeText={setIngredientes}></TextInput>
+                            {renderError('ingredientes')}
+                        </View>
 
-                <View style={styles.botaoRegistrar}><TouchableOpacity  onPress={cadastrarProduto}><Text style={styles.textRegistrar} >Cadastrar</Text></TouchableOpacity></View>
-                </ScrollView>
-            </View>
+                        <View>
+                            <Text style={styles.text}>Preço</Text>
+                            <TextInput keyboardType={'decimal-pad'} placeholder="Preço" style={styles.input} value={preco} onChangeText={setPreco}></TextInput>
+                            {renderError('preco')}
+                        </View>
+
+                        <View style={styles.botaoRegistrar}><TouchableOpacity  onPress={cadastrarProduto}><Text style={styles.textRegistrar} >Cadastrar</Text></TouchableOpacity></View>
+                      <View style={styles.alinha}>{message && <View style={styles.message}><Text style={styles.messageText}>{message}</Text></View>}</View>
+                    </ScrollView>
+                </View>
 
             </ScrollView>
         </View>
@@ -215,10 +211,10 @@ const styles = StyleSheet.create({
         width: 350,
         padding: 10,
         borderRadius: 40,
-        marginLeft: 25,
+        marginLeft: 20,
         backgroundColor: 'white',
         marginTop: 70,
-        
+
  
 
     },
@@ -267,7 +263,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 5
 
-
+ 
 
     },
     headerText: {
@@ -289,6 +285,22 @@ marca:{
     alignItems:'center',
     
 },
+message: {
+    backgroundColor: 'green',
+    padding: 8,
+    borderRadius: 5,
+    marginTop: 1,
+    alignItems: 'center',
+    width:300
+   
+},
+messageText: {
+    color: 'white',
+    fontWeight: 'bold',
+},
+alinha:{
+    alignItems:'center'
+}
 
 });
 
