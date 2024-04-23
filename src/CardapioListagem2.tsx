@@ -26,7 +26,7 @@ const CardapioListagem2 = () => {
         try {
             const response = await axios.get('http://10.137.11.214/api/produtos');
             if (response.status === 200) {
-                setProdutos(response.data); // Set the state with the correct data
+                setProdutos(response.data); 
                  console.log(produtos);
             }
         } catch (error) {
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     },
     textValor: {
         color: 'red',
-        marginLeft: 80,
+        marginLeft: 10,
         fontWeight: 'bold',
         marginTop: 1,
 
